@@ -9,7 +9,7 @@ np.random.seed(0)
 coin_flips = []
 y_frequencies = []
 for _ in range(1000):
-    coin_flips.append(np.random.binomial(0,2))
+    coin_flips.append(list(np.random.binomial(1,2)))
     y_frequencies.append(frequency_heads(coin_flips))
 
 plt.plot(list(range(1000)), y_frequencies)

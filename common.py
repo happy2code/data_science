@@ -26,3 +26,17 @@ def compute_probability(event_condition, generic_sample_space):
 
 def is_in_interval(value, min, max):
     return min <= value <= max    
+
+def compute_high_confidence_interval(lhoods, width):
+    peak_index = lhoods.argmax()
+    area = lhoods[peak_index] * width
+    start_index, end_index = peak_index, peak_index + 1
+    while area < 0.95:
+        if start_index > 0:
+            start_index -= 1
+        if end_index < lhoods.size - 1:
+            end_index += 1
+
+        area = lhoods[start_index : end_index + 1].sum() * width
+
+    return start_index, end_index
